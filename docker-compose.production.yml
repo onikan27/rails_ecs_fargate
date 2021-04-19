@@ -1,0 +1,5 @@
+# プロダクション用Composeファイル
+app:
+  image: alpine
+  environment:
+    APP_ENV: production
