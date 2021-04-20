@@ -1,5 +1,37 @@
-# 開発環境用Composeファイル
-app:
-  image: alpine
-  environment:
-    APP_ENV: development
+version: 2
+services:
+  datastore:
+    image: busybox
+    volumes: 
+      - /share
+      - ./docker/mysql/volumes:/var/lib/mysql
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    extends:
+      file: docker-compose.common.yml
+      service: server
+    volumes_from: 
+      - datastore
+    depends_on:
+      - datastore
+
+  web:
+    extends:
+      file: docker-compose.common.yml
+      service: web
+    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.rb
+    volumes_from:
+      - datastore
+    depends_on:
+      - db
+      - datastore
+  db:
+    extends: 
+      file: docker-compose.common.yml
+      service: db
+      volumes_from:
+        - datastore
+      depends_on:
+        - datastore

@@ -1,5 +1,22 @@
-# プロダクション用Composeファイル
-app:
-  image: alpine
-  environment:
-    APP_ENV: production
+version: 2
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    extends:
+      file: docker-compose.common.yml
+      service: server
+  web:
+    external_links: 
+      file: docker-compose.common.yml
+      service: web
+    depends_on:
+      - server
+    # FIX
+    environment:
+      RAILS_ENV: production
+      DB_HOST: ◯◯.△△.ap-northeast-1.rds.amazonaws.com
+      DB_USERNAME: ユーザー名
+      DB_PASSWORD: パスワード
+      DB_DATABASE: データベース名
