@@ -3,7 +3,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx/production/Dockerfile
     extends:
       file: docker-compose.common.yml
       service: server
