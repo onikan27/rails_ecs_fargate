@@ -7,4 +7,4 @@ RUN apt-get update && \
 ENV LC_ALL ja_JP.UTF-8
 
 ADD ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
-ADD ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+ADD ./docker/nginx/production/default.conf /etc/nginx/conf.d/default.conf
