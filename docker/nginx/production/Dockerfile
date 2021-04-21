@@ -1,4 +1,4 @@
-FROM nginx:1.16
+FROM nginx:1.18
 RUN apt-get update && \
   apt-get install -y apt-utils \
   locales && \
@@ -7,4 +7,4 @@ RUN apt-get update && \
 ENV LC_ALL ja_JP.UTF-8
 
 ADD ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
-ADD ./docker/nginx/development/default.conf /etc/nginx/conf.d/default.conf
+ADD ./docker/nginx/production/default.conf /etc/nginx/conf.d/default.conf
