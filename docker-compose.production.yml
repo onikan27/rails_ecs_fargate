@@ -12,12 +12,13 @@ services:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile
-    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.rb
+    command: bundle exec unicorn -p 3000 -c /app/config/unicorn.rb -E 'production'
     ports:
       - "3000:3000"
     environment:
       # fix
       RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: 'true'
       TZ: "Asia/Tokyo"
     depends_on:
       - server
