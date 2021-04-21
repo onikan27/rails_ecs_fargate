@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: rails_ecs_fargate_production
-  username: rails_ecs_fargate
-  password: <%= ENV['RAILS_ECS_FARGATE_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  socket: <%= ENV['DB_SOCKET'] %>
+  host: <%= ENV['DB_HOST'] %>
