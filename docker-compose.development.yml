@@ -17,6 +17,10 @@ services:
       TZ: "Asia/Tokyo"
     volumes: 
       - .:/app
+    volumes_from:
+      - datastore
+    depends_on:
+      - datastore
   db:
     image: mysql:5.7.30
     ports:
@@ -24,3 +28,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: "Asia/Tokyo"
+    volumes_from:
+      - datastore
+    depends_on:
+      - datastore
