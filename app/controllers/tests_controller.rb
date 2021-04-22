@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
   def index
-    render json: '接続完了！'
+    head :ok
   end
 end
